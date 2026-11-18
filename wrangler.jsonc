@@ -1,0 +1,11 @@
+{
+  "$schema": "https://unpkg.com/wrangler@4.164.0/config-schema.json",
+  "name": "mikael-losell-nu",
+  "compatibility_date": "2026-11-18",
+  // Static site served straight from the repo root; see .assetsignore for exclusions
+  "assets": {
+    "directory": "."
+  },
+  // Enables `wrangler preview` (branch previews in Workers Builds)
+  "previews": {}
+}
