@@ -3,11 +3,15 @@
 :root {
   --background: #eee8d5;
   --color: #003440;
+  --hover-neutral: #000;
+  color-scheme: light;
 }
 
 [data-theme="dark"] {
   --background: #003440;
   --color: #eee8d5;
+  --hover-neutral: #fff;
+  color-scheme: dark;
 }
 
 *,
@@ -25,10 +29,8 @@ a:active {
 
 html {
   padding: 0;
-  font-size: 1vw;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+  /* 6px on phones, scaling up to 10px on desktop (1rem) */
+  font-size: clamp(6px, 0.8vw + 3px, 10px);
 }
 
 body {
@@ -63,8 +65,18 @@ nav {
   width: 60px;
 }
 
+/* Visually hidden but still focusable, so the toggle works with a keyboard */
 .theme-switch input {
-  display: none;
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+.theme-switch input:focus-visible + .slider {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
 }
 
 .slider {
@@ -115,8 +127,11 @@ input:checked + .slider:before {
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
+  min-height: 100svh;
   padding: 15rem 5rem 0 5rem;
+  /* Hide the slide-in animations' offset without blocking page scroll */
+  overflow: clip;
 }
 
 .info-text {
@@ -184,7 +199,7 @@ input:checked + .slider:before {
 }
 
 #github:hover {
-  color: black;
+  color: var(--hover-neutral);
 }
 #linkedin:hover {
   color: #0077b5;
@@ -197,21 +212,19 @@ input:checked + .slider:before {
 }
 
 .sendify:hover #sendify-logo {
-  color: black;
+  color: var(--hover-neutral);
 }
 .sendify:hover #sendify-symbol {
   color: #c82131;
 }
-@media screen and (min-width: 768px) {
-  html {
-    font-size: 0.8vw;
-  }
+
+.social a:focus-visible,
+.sendify:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
 }
 
 @media screen and (min-width: 1100px) {
-  html {
-    font-size: 10px;
-  }
   .container {
     flex-direction: row;
     justify-content: space-evenly;
@@ -230,6 +243,17 @@ input:checked + .slider:before {
     animation-name: inleft;
   }
 }
+@media (prefers-reduced-motion: reduce) {
+  .headshot,
+  .social-item svg {
+    animation: none !important;
+  }
+  .slider,
+  .slider:before {
+    transition: none;
+  }
+}
+
 @keyframes inleft {
   from {
     left: 100vh;

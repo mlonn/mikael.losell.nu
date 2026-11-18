@@ -31,3 +31,9 @@ Temporary Items
 .apdisk
 
 # End of https://www.gitignore.io/api/macos
+
+# JetBrains
+.idea/
+
+# Wrangler
+.wrangler/
