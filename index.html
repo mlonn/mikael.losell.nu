@@ -3,51 +3,71 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mikael Losell</title>
-  <meta
+    <title>Mikael Losell</title>
+    <meta
       name="description"
       content="Mikael Losell – software developer, runner & beer nerd from Gothenburg, Sweden. Currently at Sendify."
-  />
-  <link rel="canonical" href="https://mikael.losell.nu/" />
-  <meta name="theme-color" content="#eee8d5" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#003440" media="(prefers-color-scheme: dark)" />
-  <link
+    />
+    <link rel="canonical" href="https://mikael.losell.nu/" />
+    <meta name="theme-color" content="#eee8d5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#003440" media="(prefers-color-scheme: dark)" />
+    <link
       rel="icon"
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👋</text></svg>"
-  />
+    />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://mikael.losell.nu/" />
-  <meta property="og:title" content="Mikael Losell" />
-  <meta
+    <meta property="og:type" content="profile" />
+    <meta property="og:url" content="https://mikael.losell.nu/" />
+    <meta property="og:title" content="Mikael Losell" />
+    <meta
       property="og:description"
       content="Software developer, runner & beer nerd from Gothenburg, Sweden. Currently at Sendify."
-  />
-  <meta
-      property="og:image"
-      content="https://res.cloudinary.com/dxuqropj9/image/upload/q_auto/headshot.png"
-  />
-  <meta name="twitter:card" content="summary" />
+    />
+    <meta property="og:image" content="https://mikael.losell.nu/img/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Hi! I'm Mikael Losell – with a photo of Mikael smiling" />
+    <meta name="twitter:card" content="summary_large_image" />
 
-  <script>
-      // Runs before first paint so dark-mode visitors don't see a light flash.
-      // An explicit choice (saved in localStorage) wins; otherwise follow the OS.
-      (function () {
-          let saved = null;
-          try {
-              saved = localStorage.getItem("theme");
-          } catch (e) {
-          }
-          const theme =
-              saved ||
-              (window.matchMedia("(prefers-color-scheme: dark)").matches
-                  ? "dark"
-                  : "light");
-          document.documentElement.setAttribute("data-theme", theme);
-      })();
-  </script>
-  <link rel="stylesheet" type="text/css" href="style.css"/>
-</head>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Mikael Losell",
+        "url": "https://mikael.losell.nu/",
+        "image": "https://mikael.losell.nu/img/headshot-700.webp",
+        "jobTitle": "Software Developer",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Sendify",
+          "url": "https://sendify.se"
+        },
+        "homeLocation": {
+          "@type": "Place",
+          "name": "Gothenburg, Sweden"
+        },
+        "sameAs": [
+          "https://github.com/mlonn",
+          "https://www.linkedin.com/in/mikaellonn/",
+          "https://untappd.com/user/Krulla",
+          "https://www.strava.com/athletes/19046571"
+        ]
+      }
+    </script>
+
+    <!-- Sets the theme before first paint (external so the CSP needs no 'unsafe-inline') -->
+    <script src="theme-init.js"></script>
+    <script src="theme.js" defer></script>
+    <link
+      rel="preload"
+      href="fonts/source-code-pro-latin-400-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
 <body>
 <nav>
   <div class="theme-switch-wrapper">
@@ -119,7 +139,7 @@
           <a
               href="https://github.com/mlonn"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="me noopener noreferrer"
               aria-label="GitHub"
           >
             <svg
@@ -143,7 +163,7 @@
           <a
               href="https://www.linkedin.com/in/mikaellonn/"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="me noopener noreferrer"
               aria-label="LinkedIn"
           >
             <svg
@@ -167,7 +187,7 @@
           <a
               href="https://untappd.com/user/Krulla"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="me noopener noreferrer"
               aria-label="Untappd"
           >
             <svg
@@ -192,7 +212,7 @@
           <a
               href="https://www.strava.com/athletes/19046571"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="me noopener noreferrer"
               aria-label="Strava"
           >
             <svg
@@ -216,50 +236,22 @@
       </ul>
     </section>
   </div>
-  <img
-      class="headshot"
-      src="https://res.cloudinary.com/dxuqropj9/image/upload/q_auto/headshot.png"
-      alt="Mikael Losell smiling"
-  />
+  <picture class="headshot">
+    <source
+        type="image/avif"
+        srcset="img/headshot-400.avif 400w, img/headshot-700.avif 700w, img/headshot-1000.avif 1000w, img/headshot-1400.avif 1400w"
+        sizes="(min-width: 1100px) min(43vh, 50vw), 35vh"
+    />
+    <img
+        src="img/headshot-700.webp"
+        srcset="img/headshot-400.webp 400w, img/headshot-700.webp 700w, img/headshot-1000.webp 1000w, img/headshot-1400.webp 1400w"
+        sizes="(min-width: 1100px) min(43vh, 50vw), 35vh"
+        width="2600"
+        height="4532"
+        fetchpriority="high"
+        alt="Mikael Losell smiling"
+    />
+  </picture>
 </div>
-
-<script>
-    const toggleSwitch = document.querySelector(
-        '.theme-switch input[type="checkbox"]'
-    );
-    // The initial theme is set by the script in <head>; this keeps the toggle in sync.
-    const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
-
-    function applyTheme(theme) {
-        document.documentElement.setAttribute("data-theme", theme);
-        toggleSwitch.checked = theme === "dark";
-    }
-
-    function savedTheme() {
-        try {
-            return localStorage.getItem("theme");
-        } catch (e) {
-            return null;
-        }
-    }
-
-    toggleSwitch.checked =
-        document.documentElement.getAttribute("data-theme") === "dark";
-
-    // Only an explicit click is remembered.
-    toggleSwitch.addEventListener("change", (e) => {
-        const theme = e.target.checked ? "dark" : "light";
-        applyTheme(theme);
-        try {
-            localStorage.setItem("theme", theme);
-        } catch (err) {
-        }
-    });
-
-    // Follow OS theme changes until the visitor picks one themselves.
-    darkQuery.addEventListener("change", (e) => {
-        if (!savedTheme()) applyTheme(e.matches ? "dark" : "light");
-    });
-</script>
 </body>
 </html>
