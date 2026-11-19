@@ -1,9 +1,23 @@
-@import url("https://cdn.jsdelivr.net/npm/typeface-source-code-pro@1.1.3/index.min.css");
+/* Self-hosted Source Code Pro (latin, 400) from @fontsource/source-code-pro; see fonts/OFL.txt */
+@font-face {
+  font-family: "Source Code Pro";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/source-code-pro-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
 :root {
   --background: #eee8d5;
   --color: #003440;
   --hover-neutral: #000;
+  /* Brand colours, tuned per theme so they stay readable on the background */
+  --linkedin: #0077b5;
+  --untappd: #9a7400;
+  --strava: #d14400;
   color-scheme: light;
 }
 
@@ -11,6 +25,9 @@
   --background: #003440;
   --color: #eee8d5;
   --hover-neutral: #fff;
+  --linkedin: #4da3d9;
+  --untappd: #ffcc00;
+  --strava: #fc5200;
   color-scheme: dark;
 }
 
@@ -34,7 +51,7 @@ html {
 }
 
 body {
-  font-family: "Source Code Pro";
+  font-family: "Source Code Pro", ui-monospace, Menlo, Consolas, monospace;
   padding: 0;
   margin: 0;
   background-color: var(--background);
@@ -149,11 +166,16 @@ input:checked + .slider:before {
   display: flex;
 }
 
+/* The <picture> wrapper stays out of the flex layout; the <img> is the flex item */
 .headshot {
-  position: relative;
+  display: contents;
+}
+
+.headshot img {
   animation-name: inbottom;
   animation-duration: 1.8s;
   height: 60vh;
+  width: auto;
   flex-grow: 1;
 }
 .social {
@@ -168,7 +190,6 @@ input:checked + .slider:before {
 }
 
 .social-item svg {
-  position: relative;
   animation-name: inleft;
   width: 5rem;
   height: 5rem;
@@ -198,24 +219,26 @@ input:checked + .slider:before {
   animation-timing-function: ease-in;
 }
 
-#github:hover {
+.social a:hover #github,
+.social a:focus-visible #github {
   color: var(--hover-neutral);
 }
-#linkedin:hover {
-  color: #0077b5;
+.social a:hover #linkedin,
+.social a:focus-visible #linkedin {
+  color: var(--linkedin);
 }
-#untappd:hover {
-  color: #ffcc00;
+.social a:hover #untappd,
+.social a:focus-visible #untappd {
+  color: var(--untappd);
 }
-#strava:hover {
-  color: #fc5200;
+.social a:hover #strava,
+.social a:focus-visible #strava {
+  color: var(--strava);
 }
 
-.sendify:hover #sendify-logo {
+.sendify:hover #sendify-logo,
+.sendify:focus-visible #sendify-logo {
   color: var(--hover-neutral);
-}
-.sendify:hover #sendify-symbol {
-  color: #c82131;
 }
 
 .social a:focus-visible,
@@ -234,7 +257,7 @@ input:checked + .slider:before {
     align-items: center;
   }
 
-  .headshot {
+  .headshot img {
     height: 75vh;
     max-width: 50vw;
     object-fit: scale-down;
@@ -244,7 +267,7 @@ input:checked + .slider:before {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .headshot,
+  .headshot img,
   .social-item svg {
     animation: none !important;
   }
@@ -254,25 +277,29 @@ input:checked + .slider:before {
   }
 }
 
+/* transform instead of left/top so the slide-ins run on the compositor */
 @keyframes inleft {
   from {
-    left: 100vh;
+    transform: translateX(100vh);
   }
   to {
-    left: 0;
+    transform: none;
   }
 }
 @keyframes inbottom {
   from {
-    top: 100vh;
+    transform: translateY(100vh);
   }
   to {
-    top: 0;
+    transform: none;
   }
 }
-@keyframes type {
-  to {
-    white-space: normal;
-    width: 100%;
-  }
+
+.not-found .back {
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+.not-found .back:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
 }
